@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
 
-const CategoryCard = ({ title, tasks }) => {
+const CategoryCard = ({ title, tasks, image }) => {
   return (
     <View style={styles.card}>
+      <Image source={image} style={styles.image} />
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.tasks}>{tasks} Tasks</Text>
     </View>
@@ -17,6 +18,11 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginRight: 16,
     alignItems: 'center',
+  },
+  image: {
+    width: 50,
+    height: 50,
+    marginBottom: 8,
   },
   title: {
     fontSize: 16,
