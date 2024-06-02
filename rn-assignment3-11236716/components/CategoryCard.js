@@ -1,36 +1,37 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-const CategoryCard = ({ title, tasks, image }) => {
+const CategoryCard = ({ category }) => {
   return (
-    <View style={styles.card}>
-      <Image source={image} style={styles.image} />
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.tasks}>{tasks} Tasks</Text>
+    <View style={styles.container}>
+      <Image source={category.icon} style={styles.icon} />
+      <Text style={styles.text}>{category.name}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  card: {
-    padding: 16,
-    backgroundColor: '#fff',
-    borderRadius: 8,
-    marginRight: 16,
+  container: {
+    flexDirection: 'column',
     alignItems: 'center',
+    padding: 10,
+    margin: 5,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 5,
   },
-  image: {
+  icon: {
     width: 50,
     height: 50,
-    marginBottom: 8,
+    marginBottom: 5,
   },
-  title: {
+  text: {
     fontSize: 16,
     fontWeight: 'bold',
-  },
-  tasks: {
-    fontSize: 14,
-    color: 'gray',
   },
 });
 
