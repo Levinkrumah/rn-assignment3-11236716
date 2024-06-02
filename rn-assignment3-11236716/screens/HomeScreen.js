@@ -36,14 +36,14 @@ const HomeScreen = () => {
   ]);
 
   const categories = [
-    { name: 'Exercise', icon: require('../assets/images/exercise.png') },
-    { name: 'Study', icon: require('../assets/images/study.png') },
-    { name: 'Code', icon: require('../assets/images/code.png') },
-    { name: 'Cook', icon: require('../assets/images/cook.png') },
-    { name: 'Read', icon: require('../assets/images/read.png') },
-    { name: 'Meditate', icon: require('../assets/images/meditate.png') },
-    { name: 'Travel', icon: require('../assets/images/travel.png') },
-    { name: 'Shop', icon: require('../assets/images/shop.png') },
+    { name: 'Exercise', icon: require('../components/assets/images/exercise.png') },
+    { name: 'Study', icon: require('../components/assets/images/study.png') },
+    { name: 'Code', icon: require('../components/assets/images/code.png') },
+    { name: 'Cook', icon: require('../components/assets/images/cook.png') },
+    { name: 'Read', icon: require('../components/assets/images/read.png') },
+    { name: 'Meditate', icon: require('../components/assets/images/meditate.png') },
+    { name: 'Travel', icon: require('../components/assets/images/travel.png') },
+    { name: 'Shop', icon: require('../components/assets/images/shop.png') },
   ];
 
   const addTask = () => {
