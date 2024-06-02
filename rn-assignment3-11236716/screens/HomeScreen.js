@@ -1,41 +1,79 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, ScrollView, TextInput, Button, FlatList, StyleSheet } from 'react-native';
-import CategoryCard from '../components/CategoryCard';
+import CategoryItem from '../components/CategoryItem';
 import TaskItem from '../components/TaskItem';
 
-const categories = [
-  { id: '1', title: 'Exercise', tasks: 12, image: require('../assets/images/exercise.png') },
-  { id: '2', title: 'Study', tasks: 12, image: require('../assets/images/study.png') },
-  
-];
-
-const tasks = [
-  { id: '1', title: 'Mobile App Development' },
-  { id: '2', title: 'Web Development' },
-  
-];
-
 const HomeScreen = () => {
+  const [task, setTask] = useState('');
+  const [tasks, setTasks] = useState([
+    // Exercise-related tasks
+    'Morning Yoga',
+    'Evening Jogging',
+    'Weight Training',
+    
+    // Study-related tasks
+    'Read Chapter 5 of History Book',
+    'Complete Math Homework',
+    'Review Chemistry Notes',
+    
+    // Code-related tasks
+    'Finish React Native Assignment',
+    'Debug JavaScript Project',
+    'Attend Coding Workshop',
+    
+    // Cook-related tasks
+    'Prepare Breakfast',
+    'Cook Dinner',
+    'Bake a Cake',
+    
+    // Other categories
+    'Meditate for 20 minutes',
+    'Travel to the Museum',
+    'Go Grocery Shopping',
+    'Read a Novel',
+    'Practice Piano',
+    'Water the Plants',
+  ]);
+
+  const categories = [
+    { name: 'Exercise', icon: require('../../assets/icons/exercise.png') },
+    { name: 'Study', icon: require('../../assets/icons/study.png') },
+    { name: 'Code', icon: require('../../assets/icons/code.png') },
+    { name: 'Cook', icon: require('../../assets/icons/cook.png') },
+    { name: 'Read', icon: require('../../assets/icons/read.png') },
+    { name: 'Meditate', icon: require('../../assets/icons/meditate.png') },
+    { name: 'Travel', icon: require('../../assets/icons/travel.png') },
+    { name: 'Shop', icon: require('../../assets/icons/shop.png') },
+  ];
+
+  const addTask = () => {
+    if (task.trim() !== '') {
+      setTasks([...tasks, task]);
+      setTask('');
+    }
+  };
+
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.greeting}>Hello, Devs</Text>
-        <Text style={styles.taskCount}>14 tasks today</Text>
-      </View>
-      <TextInput style={styles.search} placeholder="Search" />
-      <Button title="Filter" onPress={() => {}} />
-      <Text style={styles.sectionTitle}>Categories</Text>
-      <ScrollView horizontal>
-        {categories.map(category => (
-          <CategoryCard key={category.id} title={category.title} tasks={category.tasks} image={category.image} />
+      <Text style={styles.title}>Categories</Text>
+      <ScrollView horizontal style={styles.categories}>
+        {categories.map((category, index) => (
+          <CategoryItem key={index} category={category} />
         ))}
       </ScrollView>
-      <Text style={styles.sectionTitle}>Ongoing Task</Text>
+      <Text style={styles.title}>Tasks</Text>
       <FlatList
         data={tasks}
-        renderItem={({ item }) => <TaskItem title={item.title} />}
-        keyExtractor={item => item.id}
+        renderItem={({ item }) => <TaskItem task={item} />}
+        keyExtractor={(item, index) => index.toString()}
       />
+      <TextInput
+        style={styles.input}
+        value={task}
+        onChangeText={setTask}
+        placeholder="Add a new task"
+      />
+      <Button title="Add Task" onPress={addTask} />
     </ScrollView>
   );
 };
@@ -43,30 +81,22 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    padding: 20,
   },
-  header: {
-    marginBottom: 16,
-  },
-  greeting: {
+  title: {
     fontSize: 24,
     fontWeight: 'bold',
+    marginVertical: 10,
   },
-  taskCount: {
-    fontSize: 16,
-    color: 'gray',
+  categories: {
+    flexDirection: 'row',
+    marginBottom: 20,
   },
-  search: {
-    padding: 8,
+  input: {
     borderWidth: 1,
-    borderColor: 'gray',
-    borderRadius: 8,
-    marginBottom: 16,
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginVertical: 8,
+    borderColor: '#ccc',
+    padding: 10,
+    marginBottom: 10,
   },
 });
 
