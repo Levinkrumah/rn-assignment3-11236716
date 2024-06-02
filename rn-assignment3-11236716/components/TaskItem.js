@@ -1,22 +1,21 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const TaskItem = ({ title }) => {
+const TaskItem = ({ task }) => {
   return (
-    <View style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
+    <View style={styles.container}>
+      <Text style={styles.text}>{task}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  item: {
-    padding: 16,
-    backgroundColor: '#fff',
-    borderRadius: 8,
-    marginVertical: 8,
+  container: {
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
   },
-  title: {
+  text: {
     fontSize: 16,
   },
 });
